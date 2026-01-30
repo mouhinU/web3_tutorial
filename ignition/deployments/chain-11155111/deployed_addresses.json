@@ -1,0 +1,7 @@
+{
+  "ProxyModule#Counter": "0xdd4B55C02a019b2A92c5E4d1Dd810eAF9D2B9572",
+  "ProxyModule#TransparentUpgradeableProxy": "0xDAE9fE87028dB591A3E921f35619ad22439a7076",
+  "ProxyModule#ProxyAdmin": "0x299fEC1fC8C1667eD358E0F85F858FbCEa6bA6aC",
+  "CounterModule#Counter": "0xDAE9fE87028dB591A3E921f35619ad22439a7076",
+  "UpgradeModule#CounterV2": "0x4E42d28666Fb9a00ecECB5056C30897687E9B923"
+}

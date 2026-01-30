@@ -1,0 +1,35 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-38d9eb7bc7c5efc475e36e431ba812feef5f9c1a",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/CounterV2.sol": "project/contracts/CounterV2.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/CounterV2.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract CounterV2 {\n  uint public x;\n\n  string public name;\n\n  event Increment(uint by);\n  event Square(uint by);\n\n  function inc() public {\n    x++;\n    emit Increment(1);\n  }\n\n  function incBy(uint by) public {\n    require(by > 0, \"incBy: increment should be positive\");\n    x += by;\n    emit Increment(by);\n  }\n\n  // 写一个x平方的function并赋值给x\n  function square() public {\n    x = x * x;\n    emit Square(x);\n  }\n\n  function setName(string memory _name) public {\n    name = _name;\n  }\n\n  function version() public pure returns (string memory) {\n    return \"2.0.0\";\n  }\n}\n"
+      }
+    }
+  }
+}
