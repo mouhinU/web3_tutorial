@@ -1,0 +1,6 @@
+{
+  "NFTProxyModule#NMCToken": "0x5b9440201d1C64cBa00b49ebAb9D784f0C4543c2",
+  "NFTProxyModule#TransparentUpgradeableProxy": "0xad76A7d1a13D11CFCBF9089de8A613230e187a64",
+  "NFTProxyModule#ProxyAdmin": "0x14606e2935d1FD824f5B31BbF7A13856143fd32d",
+  "NMCTokenToV1Module#NMCTokenProxy": "0xad76A7d1a13D11CFCBF9089de8A613230e187a64"
+}

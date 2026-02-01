@@ -30,7 +30,7 @@ contract CounterV2 {
     name = _name;
   }
 
-  function version() public pure returns (string memory) {
+  function version() public pure virtual returns (string memory) {
     return "2.0.0";
   }
 }

@@ -1,0 +1,38 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-425aa1d08a7994319568deb3b9c2691ecb8bb395",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/CounterV3.sol": "project/contracts/CounterV3.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/CounterV2.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract CounterV2 {\n  uint public x;\n\n  string public name;\n\n  event Increment(uint by);\n  event Square(uint by);\n\n  function inc() public {\n    x++;\n    emit Increment(1);\n  }\n\n  function incBy(uint by) public {\n    require(by > 0, \"incBy: increment should be positive\");\n    x += by;\n    emit Increment(by);\n  }\n\n  // 写一个x平方的function并赋值给x\n  function square() public {\n    x = x * x;\n    emit Square(x);\n  }\n\n  function setName(string memory _name) public {\n    name = _name;\n  }\n\n  function version() public pure virtual returns (string memory) {\n    return \"2.0.0\";\n  }\n}\n"
+      },
+      "project/contracts/CounterV3.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\nimport \"./CounterV2.sol\";\n\ncontract CounterV3 is CounterV2 {\n  // 新的事件\n  event Cubic(uint result);\n\n  // 立方函数\n  function cubic() public {\n    x = x * x * x;\n    emit Cubic(x);\n  }\n\n  function version() public pure virtual override returns (string memory) {\n    return \"3.0.0\";\n  }\n}\n"
+      }
+    }
+  }
+}

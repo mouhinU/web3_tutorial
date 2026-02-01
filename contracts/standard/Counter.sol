@@ -17,7 +17,7 @@ contract Counter {
     emit Increment(by);
   }
 
-  function version() public pure returns (string memory) {
+  function version() public pure virtual returns (string memory) {
     return "1.0.0";
   }
 }

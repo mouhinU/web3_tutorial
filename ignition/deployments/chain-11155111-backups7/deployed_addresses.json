@@ -1,0 +1,6 @@
+{
+  "UpgradeOnlyV2Module#ExistingProxy": "0xe6Aa573787De66e26A2808cfb5874C8d9c9183e1",
+  "UpgradeOnlyV2Module#ExistingProxyAdmin": "0x8efa70b3E9E88523c461517BdaA1bA5aC0Fa964c",
+  "UpgradeOnlyV2Module#NMCTokenV2Implementation": "0x834b7d88BD0B96170686800fF88f5dD034C8b07B",
+  "UpgradeOnlyV2Module#UpgradedNMCToken": "0xe6Aa573787De66e26A2808cfb5874C8d9c9183e1"
+}
