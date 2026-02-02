@@ -28,7 +28,7 @@ describe("NMCToken Proxy", async function () {
             const accounts = await ethers.getSigners()
             const connect = await hre.network.connect()
             // Get the proxy contract instance
-            const nmcTokenProxy = await ethers.getContractAt("NMCTokenV2", "0x111d8F457f6A53888c10eAC5e5ff88190ba6bf29")
+            const nmcTokenProxy = await ethers.getContractAt("NMCTokenV2", "0x0Ad2B3De38d8DADcBAD5DDFAd0e86D4781704aF7")
 
             // Check current owner
             const currentOwner = await nmcTokenProxy.owner()
@@ -47,16 +47,7 @@ describe("NMCToken Proxy", async function () {
     })
 
     describe("Upgrading to V2 NMCTokenToV2Module", function () {
-        it("transferOwnership to otherAccount", async function () {
-            const accounts = await ethers.getSigners()
-            const connect = await hre.network.connect()
-            const [, otherAccount] = await ethers.getSigners()
-            const nmcTokenProxy = await ethers.getContractAt("NMCTokenV2", "0xe6Aa573787De66e26A2808cfb5874C8d9c9183e1")
-            const tx = await nmcTokenProxy.transferOwnership(accounts[0]?.address)
-            const txReceipt = await tx.wait()
-            console.log(txReceipt)
-        })
-
+        // 部署V2合约
         it("Should have upgraded the proxy to NMCTokenToV2Module", async function () {
             const accounts = await ethers.getSigners()
             const connect = await hre.network.connect()
@@ -64,11 +55,30 @@ describe("NMCToken Proxy", async function () {
             console.info(`nmcToken v2 address: ${nmcTokenProxy.target}`)
             const totalSupply = await nmcTokenProxy.getTotalSupply()
             console.log(`totalSupply :${totalSupply}`)
-            const tx = await nmcTokenProxy.setMaxSupply(20000)
+        })
+
+        // 更改Owner为Account 0
+        it("TransferOwnership to otherAccount", async function () {
+            const accounts = await ethers.getSigners()
+            const connect = await hre.network.connect()
+            const [, otherAccount] = await ethers.getSigners()
+            const nmcTokenProxy = await ethers.getContractAt("NMCTokenV2", "0x0Ad2B3De38d8DADcBAD5DDFAd0e86D4781704aF7")
+            const tx = await nmcTokenProxy.transferOwnership(accounts[0]?.address)
             const txReceipt = await tx.wait()
             console.log(txReceipt)
-            const newTotalSupply = await nmcTokenProxy.getTotalSupply()
-            console.log(`newTotalSupply :${newTotalSupply}`)
+        })
+
+        // 设置MaxSupply为2000000
+        it("Should have upgraded the proxy to NMCTokenToV2Module setMaxSupply", async function () {
+            const accounts = await ethers.getSigners()
+            const connect = await hre.network.connect()
+            const { proxyAdmin, proxy, nmcTokenProxy } = await connect.ignition.deploy(NFTUpgradeToV2Module)
+            console.info(`nmcToken v2 address: ${nmcTokenProxy.target}`)
+            const tx = await nmcTokenProxy.setMaxSupply(2000000)
+            const txReceipt = await tx.wait()
+            console.log(txReceipt)
+            const totalSupply = await nmcTokenProxy.getTotalSupply()
+            console.log(`totalSupply :${totalSupply}`)
         })
     })
 })

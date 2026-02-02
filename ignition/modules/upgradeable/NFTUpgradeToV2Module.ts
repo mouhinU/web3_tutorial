@@ -2,16 +2,14 @@ import { buildModule } from "@nomicfoundation/hardhat-ignition/modules"
 import NMCTokenToV1Module from "./NFTProxyModule.js"
 
 const NFTUpgradeToV2Module = buildModule("NFTUpgradeToV2Module", (m) => {
-    // 这些是已部署的合约地址（替换为你的实际地址）
-
     // 获取所有者账户（应该是原来的部署者）
     const owner = m.getAccount(0)
-    // 获取proxy ,proxyAdmin 合约实例
+    // 1. 获取proxy ,proxyAdmin 合约实例
     const { proxy, proxyAdmin } = m.useModule(NMCTokenToV1Module)
 
     // 2. 部署新的 V2 实现合约
     const nmcTokenV2 = m.contract("NMCTokenV2", [], {
-        id: "NMCTokenV2Implementation",
+        id: "NMCTokenV2",
     })
 
     // 3. 升级代理
