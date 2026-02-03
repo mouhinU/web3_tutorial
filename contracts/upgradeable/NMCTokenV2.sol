@@ -62,7 +62,7 @@ contract NMCTokenV2 is
         // require(_v2Configured, "V2 already configured");
         // 设置V2默认值
         baseURI = "";
-        maxSupply = 10000;
+        maxSupply = 9960000;
         publicMintingEnabled = false;
         _v2Configured = true;
         emit V2Configured(msg.sender, maxSupply);

@@ -5,8 +5,7 @@ const NFTProxyModule = buildModule("NFTProxyModule", (m) => {
     // 获取第一个账户作为代理管理员所有者
     const proxyAdminOwner = m.getAccount(0)
     // 部署初始实现合约 `NMCToken`
-    const nmcToken = m.contract("NMCToken", [], { id: "NMCToken" })
-
+    const nmcToken = m.contract("NMCToken", ["NMCToken", "NMC"], { id: "NMCToken" })
     // 编码初始化函数调用，参数：
     // - nmcToken: 初始实现合约实例
     // - "initialize": 初始化函数名称

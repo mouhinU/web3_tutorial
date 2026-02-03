@@ -508,7 +508,19 @@
   resolved "https://registry.yarnpkg.com/@bytecodealliance/preview2-shim/-/preview2-shim-0.17.6.tgz#3d60f3fde44582b022643fafcee38077594069e5"
   integrity sha512-n3cM88gTen5980UOBAD6xDcNNL3ocTK8keab21bpx1ONdA+ARj7uD1qoFxOWCyKlkpSi195FH+GeAut7Oc6zZw==
 
-"@chainlink/contracts@^1.5.0":
+"@chainlink/contracts-ccip@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@chainlink/contracts-ccip/-/contracts-ccip-1.6.4.tgz#8c29c82654b4592b4c76e98fcca3864ac8ec0384"
+  integrity sha512-+kHHZJ4DtSd0mO6EIrPpK9UzEwVhMNR0wzbjuRDcn1UwX4wibnrEbY5RYuGOrTwmXPRoMFsDVeN47O5zgFg5cw==
+  dependencies:
+    "@chainlink/contracts" "1.5.0"
+    "@changesets/cli" "^2.29.7"
+    "@changesets/get-github-info" "^0.6.0"
+    "@openzeppelin/contracts-4.8.3" "npm:@openzeppelin/contracts@4.8.3"
+    "@openzeppelin/contracts-5.0.2" "npm:@openzeppelin/contracts@5.0.2"
+    semver "^7.7.2"
+
+"@chainlink/contracts@1.5.0", "@chainlink/contracts@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@chainlink/contracts/-/contracts-1.5.0.tgz#ae9a5a20da1169e7b0dd2a625856c4aa3e2a58bc"
   integrity sha512-1fGJwjvivqAxvVOTqZUEXGR54CATtg0vjcXgSIk4Cfoad2nUhSG/qaWHXjLg1CkNTeOoteoxGQcpP/HiA5HsUA==
@@ -566,7 +578,7 @@
   dependencies:
     "@changesets/types" "^6.1.0"
 
-"@changesets/cli@^2.29.6":
+"@changesets/cli@^2.29.6", "@changesets/cli@^2.29.7":
   version "2.29.8"
   resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.29.8.tgz#30f71f7ea4f68acab9fb3a0edf178ab43a337e0a"
   integrity sha512-1weuGZpP63YWUYjay/E84qqwcnt5yJMM0tep10Up7Q5cS/DGe2IZ0Uj3HNMxGhCINZuR7aO9WBMdKnPit5ZDPA==
