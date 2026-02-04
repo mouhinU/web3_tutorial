@@ -10,17 +10,17 @@ import "./NMCTokenV2.sol";
  */
 contract NMCTokenV3 is NMCTokenV2 {
     // V3新增功能：时间戳功能
-    uint256 private s_lastTimeStamp;
+    uint256 internal s_lastTimeStamp;
     bool private _v3Configured;
 
     // V3新增：代币等级系统
-    mapping(uint256 => uint8) private _tokenLevels;
-    mapping(uint256 => uint256) private _tokenExperience;
+    mapping(uint256 => uint8) internal _tokenLevels;
+    mapping(uint256 => uint256) internal _tokenExperience;
 
     // V3新增：用户统计
-    mapping(address => uint256) private _userTotalExperience;
-    mapping(address => uint8) private _userLevel;
-    mapping(uint256 => bool) private _existsTokens;
+    mapping(address => uint256) internal _userTotalExperience;
+    mapping(address => uint8) internal _userLevel;
+    mapping(uint256 => bool) internal _existsTokens;
 
     // V3新增事件
     event V3Configured(address indexed configurator, uint256 timestamp);
@@ -30,7 +30,7 @@ contract NMCTokenV3 is NMCTokenV2 {
 
     /// @dev V3初始化函数
     function initializeV3() public {
-        require(!_v3Configured, "V3 already configured");
+        require(_v3Configured, "V3 already configured");
         s_lastTimeStamp = block.timestamp;
         _v3Configured = true;
         emit V3Configured(msg.sender, s_lastTimeStamp);
@@ -49,7 +49,7 @@ contract NMCTokenV3 is NMCTokenV2 {
     }
 
     /// @dev 为代币增加经验值
-    function addTokenExperience(uint256 tokenId, uint256 experience) public {
+    function addTokenExperience(uint256 tokenId, uint256 experience) public virtual {
         require(_existsTokens[tokenId], "Token does not exist");
         require(experience > 0, "Experience must be positive");
 

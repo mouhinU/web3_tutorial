@@ -1,5 +1,5 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules"
-import NMCTokenToV1Module from "./NFTProxyModule.js"
+import NMCTokenToV1Module from "./NFTProxyToV1Module.js"
 
 // 升级代理合约到 V2 实现合约
 const NFTUpgradeToV2Module = buildModule("NFTUpgradeToV2Module", (m) => {
