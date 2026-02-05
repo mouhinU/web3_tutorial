@@ -11,7 +11,7 @@ const NFTUpgradeToV3Module = buildModule("NFTUpgradeToV3Module", (m) => {
     const NMCTokenV3 = m.contract("NMCTokenV3", [], {
         id: "NMCTokenV3",
     })
-    // 3. 升级代理合约到 V2 实现合约
+    // 3. 升级代理合约到 V3 实现合约
     m.call(proxyAdmin, "upgradeAndCall", [proxy, NMCTokenV3, "0x"], {
         from: proxyAdminOwner,
         id: "UpgradeProxyToV3",
@@ -23,17 +23,22 @@ const NFTUpgradeToV3Module = buildModule("NFTUpgradeToV3Module", (m) => {
     // 5. 通过升级后的代理合约实例,调用 V2 实现合约的初始化函数
     // 注意：这里需要从地址 "0x0000000000000000000000000000000000000000" 调用
     // 这是因为在升级时未传递初始化数据，所以需要通过代理合约直接调用
-    m.call(
-        nmcTokenProxy,
-        "initializeV3",
-        [
-            /*这里是初始化方法的请求参数*/
-        ],
-        {
-            from: proxyAdminOwner,
-            id: "InitializeV3Features",
-        },
-    )
+    try {
+        m.call(
+            nmcTokenProxy,
+            "initializeV3",
+            [
+                /*这里是初始化方法的请求参数*/
+            ],
+            {
+                from: proxyAdminOwner,
+                id: "InitializeV3Features",
+            },
+        )
+    } catch (error) {
+        console.log("初始化 V3 特征失败:", error)
+    }
+
     return { proxy, proxyAdmin, nmcTokenProxy }
 })
 

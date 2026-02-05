@@ -30,11 +30,9 @@ contract NMCTokenV4 is NMCTokenV3, UUPSUpgradeable {
 
     /// @dev V4初始化函数
     function initializeV4() public reinitializer(4) {
-        require(!_v4Configured, "V4 already configured");
-
+        require(_v4Configured, "V4 already configured");
         // 初始化UUPS
         __UUPSUpgradeable_init();
-
         s_lastTimeStamp = block.timestamp;
         _v4Configured = true;
         emit V4Configured(msg.sender, s_lastTimeStamp);

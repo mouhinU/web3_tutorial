@@ -93,6 +93,13 @@ export default defineConfig({
             // Sepolia 测试网络账户私钥
             accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
         },
+        amoy: {
+            chainId: 80002,
+            type: "http",
+            chainType: "l1",
+            url: "https://polygon-amoy.g.alchemy.com/v2/ZYL-7uUaIDhGhdhasgsTf",
+            accounts: [configVariable("SEPOLIA_PRIVATE_KEY")],
+        },
     },
     // 合约验证配置
     verify: {

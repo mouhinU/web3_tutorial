@@ -7,7 +7,7 @@ import NFTUpgradeToV3Module from "../ignition/modules/upgradeable/NFTUpgradeToV3
 import NFTUpgradeToV4Module from "../ignition/modules/upgradeable/NFTUpgradeToV4Module.js"
 
 // 代理合约地址
-const proxyAddress = "0xe036165d296Aa49ABEfB6c5E8FD3c3f67faBE204"
+const proxyAddress = "0x3f47e30253874fD09DF581Ec5A07bF2bCA29D936"
 
 /// @notice Test NMCToken Proxy interaction
 /// @dev Test NMCToken Proxy interaction
@@ -115,27 +115,36 @@ describe("NMCToken Proxy", async function () {
             const formattedDate = new Date(Number(lastTimeStamp) * 1000).toLocaleString()
             console.log(`lastTimeStamp :${lastTimeStamp} (${formattedDate})`)
         })
-    })
 
-    describe("Upgrading to V4 NFTUpgradeToV4Module", function () {
-        // 部署V4合约
-        it("6、Should have upgraded the proxy to NFTUpgradeToV4Module", async function () {
+        it("6.1、Should have setMaxSupply to 99600000", async function () {
             const { ethers, networkName } = await hre.network.connect()
             console.info(`NMCToken Proxy networkName: ${networkName}`)
             const accounts = await ethers.getSigners()
             const connect = await hre.network.connect()
-            const { implementation, proxy, nmcTokenV4Proxy } = await connect.ignition.deploy(NFTUpgradeToV4Module)
-            console.info(`nmcToken v4 address: ${nmcTokenV4Proxy.target}`)
-            const totalSupply = await nmcTokenV4Proxy.getTotalSupply()
+            const { proxyAdmin, proxy, nmcTokenProxy } = await connect.ignition.deploy(NFTUpgradeToV3Module)
+            console.info(`nmcToken v3 address: ${nmcTokenProxy.target}`)
+            const totalSupply = await nmcTokenProxy.getTotalSupply()
+            console.log(`totalSupply :${totalSupply}`)
+
+            const lastTimeStamp = await nmcTokenProxy.getLastTimeStamp()
+            const formattedDate = new Date(Number(lastTimeStamp) * 1000).toLocaleString()
+            console.log(`lastTimeStamp :${lastTimeStamp} (${formattedDate})`)
+        })
+    })
+
+    describe("Upgrading to V4 NFTUpgradeToV4Module", function () {
+        // 部署V4合约
+        it("7、Should have upgraded the proxy to NFTUpgradeToV4Module", async function () {
+            const { ethers, networkName } = await hre.network.connect()
+            console.info(`NMCToken Proxy networkName: ${networkName}`)
+            const accounts = await ethers.getSigners()
+            const connect = await hre.network.connect()
+            const { proxyAdmin, proxy, newImplementation } = await connect.ignition.deploy(NFTUpgradeToV4Module)
+            console.info(`nmcToken v4 address: ${newImplementation.target}`)
+            const totalSupply = await newImplementation.getTotalSupply()
             console.log(`nmcTokenV4Proxy totalSupply :${totalSupply}`)
 
-            const totalSupplyV4 = await implementation.getTotalSupply()
-            console.log(`implementation totalSupplyV4 :${totalSupplyV4}`)
-
-            const configured = await nmcTokenV4Proxy.isV4Configured()
-            console.log(`_v4Configured :${configured}`)
-
-            const lastTimeStamp = await nmcTokenV4Proxy.getLastTimeStamp()
+            const lastTimeStamp = await newImplementation.getLastTimeStamp()
             const formattedDate = new Date(Number(lastTimeStamp) * 1000).toLocaleString()
             console.log(`lastTimeStamp :${lastTimeStamp} (${formattedDate})`)
         })

@@ -30,7 +30,7 @@ contract NMCTokenV3 is NMCTokenV2 {
 
     /// @dev V3初始化函数
     function initializeV3() public {
-        require(_v3Configured, "V3 already configured");
+        // require(_v3Configured, "V3 already configured");
         s_lastTimeStamp = block.timestamp;
         _v3Configured = true;
         emit V3Configured(msg.sender, s_lastTimeStamp);

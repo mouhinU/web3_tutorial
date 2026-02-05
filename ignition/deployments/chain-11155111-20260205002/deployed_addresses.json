@@ -1,0 +1,8 @@
+{
+    "NFTProxyToV1Module#NMCToken": "0x53a9343DEF4B1D94faA13ce1f7A311657D20ECfE",
+    "NFTProxyToV1Module#TransparentUpgradeableProxy": "0x77Eb42F88Db6Cf00Da76C4428c2C7daa3e3e6E2D",
+    "NFTProxyToV1Module#ProxyAdmin": "0xDE59f2C07dde236a3BaD7028f983efC82d0dcCa4",
+    "NMCTokenToV1Module#NMCTokenProxy": "0x77Eb42F88Db6Cf00Da76C4428c2C7daa3e3e6E2D",
+    "NFTUpgradeToV2Module#NMCTokenV2": "0x5624bac53012262CCD9b573F47b0209dEd7D5089",
+    "NFTUpgradeToV2Module#UpgradedNMCTokenV2": "0x77Eb42F88Db6Cf00Da76C4428c2C7daa3e3e6E2D"
+}
